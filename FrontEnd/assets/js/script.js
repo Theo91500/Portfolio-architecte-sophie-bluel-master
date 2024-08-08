@@ -13,31 +13,57 @@ async function fetchData(url) {
     }
 }
 
+function addItemsToContainer(container, data, showImage, showTitle, trashV) {
+    if (container) {
+        data.forEach(item => {
+            const itemElement = document.createElement('figure');
+
+            // Ajouter l'image si showImage est true
+            if (showImage) {
+                const img = document.createElement('img');
+                img.src = item.imageUrl;
+                img.alt = item.title;
+                itemElement.appendChild(img);
+            }
+
+            // Ajouter le titre si showTitle est true
+            if (showTitle) {
+                const title = document.createElement('span');
+                title.textContent = item.title;
+                itemElement.appendChild(title);
+            }
+
+            if (trashV) {
+                const trash = document.createElement('a');
+                trash.href = '#'
+                const trashIcon = document.createElement('i');
+                trashIcon.className = 'fa-solid fa-trash';
+                trash.appendChild(trashIcon);
+                itemElement.appendChild(trash);
+            }
+
+            // Ajouter l'élément au conteneur
+            container.appendChild(itemElement);
+        });
+    }
+}
+
 async function displayData() {
     const url = 'http://localhost:5678/api/works'; // Remplace avec l'URL de ton API
     const data = await fetchData(url);
 
     if (data) {
-        const productList  = document.getElementById('data-list'); // Assure-toi d'avoir un élément avec cet ID dans ton HTML
+        // Sélectionner les conteneurs pour les différentes sections
+        const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
+        const modalList = document.querySelector('.modals .data-list'); // Liste des modals
 
-        data.forEach(item => {
-            const productItem = document.createElement('figure');
+        // Remplir la galerie du portfolio avec images et titres
+        addItemsToContainer(portfolioList, data, true, true, false);
 
-            // Créer et ajouter l'image
-            const img = document.createElement('img');
-            img.src = item.imageUrl;
-            img.alt = item.title;
-            productItem.appendChild(img);
-
-            // Créer et ajouter le titre
-            const title = document.createElement('span');
-            title.textContent = item.title;
-            productItem.appendChild(title);
-
-            // Ajouter le produit au conteneur principal
-            productList.appendChild(productItem);
-        });
+        // Remplir les modals avec uniquement des images
+        addItemsToContainer(modalList, data, true, false, true);
     }
 }
 
+// Appeler la fonction displayData pour remplir les deux sections
 displayData();
