@@ -24,13 +24,6 @@ function closeModals() {
         modalEditPicture.classList.add('displayNone');
         filter.classList.add('displayNone');
     });
-    // document.addEventListener('click', (e)=> {
-    //     if (!modalEditPicture.contains(e.target)) {
-    //         modalEditPicture.classList.add('displayNone');
-    //         filter.classList.add('displayNone');
-    //    }
-    // });
-
 }
 
 openModals();
