@@ -15,8 +15,8 @@
 	
 </head>
 <body>
-	<div class="loginEditHeader">
-		<i></i>
+	<div class="EditHeader">
+		<i class="fa-solid fa-pen-to-square"></i>
 		<span>Mode édition</span>
 	</div>
 <header>
@@ -50,7 +50,7 @@
 	<section id="portfolio">
 		<div class="titlePortfolio">
 			<h2>Mes Projets</h2>
-			<button class="editButton" style="display: none;"><i></i> modifier</button>
+			<button class="editButton modalsButton" style="display: none;"><i></i> modifier</button>
 		</div>
 		<div class="data-list gallery">
 			<!-- image mes projets -->
@@ -74,14 +74,54 @@
 	</section>
 
 	<section class="allModals">
-		<div class="modals modalEditPicture displayNone toto">
+		<div class="modals modalEditPicture displayNone">
 			<div class="closeButton">
 				<button class="buttonClose"><i class="fa-solid fa-xmark"></i></button>
 			</div>
 			<h3>Galerie photo</h3>
-			<div class="data-list">
+			<div class="data-list pictureModal">
 			</div>
-			<button></button>
+			<div class="divButtonModal">
+				<button class="modalsButton addPicture">
+					Ajouter une photo
+				</button>
+			</div>
+		</div>
+
+		<div class="modals modalForm displayNone">
+			<div class="closeButton">
+				<button class="buttonBack"><i class="fa-solid fa-arrow-left"></i></button>
+				<button class="buttonClose"><i class="fa-solid fa-xmark"></i></button>
+			</div>
+			<h3>Ajout photo</h3>
+			<form>
+				<div class="upload-container">
+					<label for="file-upload" class="upload-label">
+						<i class="fa-regular fa-image"></i>
+						<span class="upload-text">+ Ajouter photo</span>
+						<input id="file-upload" type="file" accept="image/*" />
+					</label>
+					<p class="upload-info">jpg, png : 4mo max</p>
+				</div>
+				<div class="divTcForm">
+					<label for="title">Titre</label>
+					<input type="text" name="title" id="title">
+				</div>
+				<div class="divTcForm ">
+					<label for="Categorie">Catégorie</label>
+					<select name="" id="">
+						<option value="" disabled selected hidden></option>
+						<option value="Option 1">Option 1</option>
+						<option value="Option 2">Option 2</option>
+						<option value="Option 3">Option 3</option>
+					</select>
+				</div>
+			</form>
+			<div class="divButtonModal">
+				<button class="addPicture">
+					Valider
+				</button>
+			</div>
 		</div>
 
 		<div class="filter displayNone"></div>

@@ -1,30 +1,51 @@
-const modalEditPicture = document.querySelector('.modalEditPicture');
+const modals = document.querySelectorAll('.modals');
 const filter = document.querySelector('.filter');
-const editButton = document.querySelector('.editButton');
-const buttonClose = document.querySelector('.buttonClose');
+const modalsButton = document.querySelectorAll('.modalsButton');
+const buttonClose = document.querySelectorAll('.buttonClose');
+const buttonBack = document.querySelector('.buttonBack');
 
 
 
 
 function openModals() {
-    editButton.addEventListener('click', () =>{
-        modalEditPicture.classList.remove('displayNone');
-        filter.classList.remove('displayNone');
-    });
+    for (let i = 0; i < modals.length; i++) {
+        modalsButton[i].addEventListener('click', () =>{
+
+            if (i == 1) {
+                modals[0].classList.add('displayNone');
+            }
+
+            modals[i].classList.remove('displayNone');
+            filter.classList.remove('displayNone');
+        });
+    }
 }
 
 function closeModals() {
 
-    buttonClose.addEventListener('click', ()=> {
-        modalEditPicture.classList.add('displayNone');
-        filter.classList.add('displayNone');
-    });
+    for (let i = 0; i < modals.length; i++) {
+        buttonClose[i].addEventListener('click', ()=> {
+            modals[i].classList.add('displayNone');
+            filter.classList.add('displayNone');
+        });
+        
+        filter.addEventListener('click', ()=> {
+            modals[i].classList.add('displayNone');
+            filter.classList.add('displayNone');
+        });
+    }
+}
 
-    filter.addEventListener('click', ()=> {
-        modalEditPicture.classList.add('displayNone');
-        filter.classList.add('displayNone');
-    });
+function backModal(){
+    for (let i = 0; i < modals.length; i++) {
+        buttonBack.addEventListener('click', ()=>{
+            modals[1].classList.add('displayNone');
+            modals[0].classList.remove('displayNone');
+        });
+    }
+
 }
 
 openModals();
 closeModals();
+backModal();

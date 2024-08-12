@@ -36,6 +36,7 @@ function addItemsToContainer(container, data, showImage, showTitle, trashV) {
             if (trashV) {
                 const trash = document.createElement('a');
                 trash.href = '#'
+                trash.className = 'trashLink';
                 const trashIcon = document.createElement('i');
                 trashIcon.className = 'fa-solid fa-trash';
                 trash.appendChild(trashIcon);
@@ -55,7 +56,7 @@ async function displayData() {
     if (data) {
         // Sélectionner les conteneurs pour les différentes sections
         const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
-        const modalList = document.querySelector('.modals .data-list'); // Liste des modals
+        const modalList = document.querySelector('.modalEditPicture .data-list'); // Liste des modals
 
         // Remplir la galerie du portfolio avec images et titres
         addItemsToContainer(portfolioList, data, true, true, false);
