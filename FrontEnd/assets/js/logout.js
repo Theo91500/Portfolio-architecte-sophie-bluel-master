@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.querySelector('.editButton');
     
     // div edit mode header
-    const loginEditHeader = document.querySelector('.loginEditHeader');
+    const EditHeader = document.querySelector('.EditHeader');
 
 
     if (token) {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         editButton.style.display = 'block';
 
         // div edit mode header
-        loginEditHeader.style.display = 'block';
+        // EditHeader.style.position = 'absolute';
 
     } else {
         // Cacher l'élément d'information utilisateur et le bouton de déconnexion si non connecté
@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         editButton.style.display = 'none';
 
         // div edit mode header
-        loginEditHeader.style.display = 'none';
+        EditHeader.style.display = 'none';
     }
 
 
     // Ajouter un gestionnaire d'événements pour le bouton de déconnexion
     logoutBtn.addEventListener('click', () => {
+        console.log('click');
         localStorage.removeItem('token');
         window.location.href = 'index.html'; // Rediriger vers la page de connexion
     });

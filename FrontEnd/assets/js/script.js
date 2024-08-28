@@ -1,6 +1,6 @@
 // "http://localhost:5678/api/works"
 
-async function fetchData(url) {
+export async function fetchData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -13,7 +13,7 @@ async function fetchData(url) {
     }
 }
 
-function addItemsToContainer(container, data, showImage, showTitle, trashV) {
+export function addItemsToContainer(container, data, showImage, showTitle, trashV) {
     if (container) {
         data.forEach(item => {
             const itemElement = document.createElement('figure');
@@ -49,22 +49,21 @@ function addItemsToContainer(container, data, showImage, showTitle, trashV) {
     }
 }
 
-async function displayData() {
-    const url = 'http://localhost:5678/api/works'; // Remplace avec l'URL de ton API
-    const data = await fetchData(url);
+// async function displayData() {
+//     const url = 'http://localhost:5678/api/works'; // Remplace avec l'URL de ton API
+//     const data = await fetchData(url);
 
-    if (data) {
-        // Sélectionner les conteneurs pour les différentes sections
-        const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
-        const modalList = document.querySelector('.modalEditPicture .data-list'); // Liste des modals
+//     if (data) {
+//         // Sélectionner les conteneurs pour les différentes sections
+//         const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
+//         const modalList = document.querySelector('.modalEditPicture .data-list'); // Liste des modals
 
-        // Remplir la galerie du portfolio avec images et titres
-        addItemsToContainer(portfolioList, data, true, true, false);
+//         // Remplir la galerie du portfolio avec images et titres
+//         addItemsToContainer(portfolioList, data, true, true, false);
 
-        // Remplir les modals avec uniquement des images
-        addItemsToContainer(modalList, data, true, false, true);
-    }
-}
+//         // Remplir les modals avec uniquement des images
+//         addItemsToContainer(modalList, data, true, false, true);
+//     }
+// }
 
 // Appeler la fonction displayData pour remplir les deux sections
-displayData();

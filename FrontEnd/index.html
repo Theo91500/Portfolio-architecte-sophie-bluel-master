@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="assets/js/script.js" defer></script>
 	<script src="assets/js/logout.js" defer></script>
+	<script type="module" src="assets/js/work.js" defer></script>
+	<!-- <script type="module" src="assets/js/api.js" defer></script> -->
 	
 </head>
 <body>
@@ -28,7 +30,7 @@
 			<a class="loginBtn" style="display: block;" href="connexion.html">
 				<li>login</li>
 			</a>
-			<button class="logoutBtn" style="display: none;" href="">
+			<button class="logoutBtn" style="display: none;">
 				<li>logout</li>
 			</button>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
@@ -94,34 +96,29 @@
 				<button class="buttonClose"><i class="fa-solid fa-xmark"></i></button>
 			</div>
 			<h3>Ajout photo</h3>
-			<form>
+			<form id="uploadForm">
 				<div class="upload-container">
 					<label for="file-upload" class="upload-label">
 						<i class="fa-regular fa-image"></i>
 						<span class="upload-text">+ Ajouter photo</span>
-						<input id="file-upload" type="file" accept="image/*" />
+						<input name="image" required id="file-upload" type="file" accept="image/*" />
 					</label>
 					<p class="upload-info">jpg, png : 4mo max</p>
 				</div>
 				<div class="divTcForm">
 					<label for="title">Titre</label>
-					<input type="text" name="title" id="title">
+					<input type="text" name="title" id="title" required>
 				</div>
-				<div class="divTcForm ">
+				<div class="divTcForm formBarreBottom">
 					<label for="Categorie">Catégorie</label>
-					<select name="" id="">
+					<select id="category" name="category" required>
 						<option value="" disabled selected hidden></option>
-						<option value="Option 1">Option 1</option>
-						<option value="Option 2">Option 2</option>
-						<option value="Option 3">Option 3</option>
 					</select>
 				</div>
+				<div class="divButtonModal">
+					<input type="submit" class="addPicture" value="Envoyer">
+				</div>
 			</form>
-			<div class="divButtonModal">
-				<button class="addPicture">
-					Valider
-				</button>
-			</div>
 		</div>
 
 		<div class="filter displayNone"></div>
