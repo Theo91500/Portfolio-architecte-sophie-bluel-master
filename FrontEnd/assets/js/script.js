@@ -34,8 +34,7 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
             }
 
             if (trashV) {
-                const trash = document.createElement('a');
-                trash.href = '#'
+                const trash = document.createElement('button');
                 trash.className = 'trashLink';
                 const trashIcon = document.createElement('i');
                 trashIcon.className = 'fa-solid fa-trash';
@@ -48,22 +47,5 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
         });
     }
 }
-
-// async function displayData() {
-//     const url = 'http://localhost:5678/api/works'; // Remplace avec l'URL de ton API
-//     const data = await fetchData(url);
-
-//     if (data) {
-//         // Sélectionner les conteneurs pour les différentes sections
-//         const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
-//         const modalList = document.querySelector('.modalEditPicture .data-list'); // Liste des modals
-
-//         // Remplir la galerie du portfolio avec images et titres
-//         addItemsToContainer(portfolioList, data, true, true, false);
-
-//         // Remplir les modals avec uniquement des images
-//         addItemsToContainer(modalList, data, true, false, true);
-//     }
-// }
 
 // Appeler la fonction displayData pour remplir les deux sections

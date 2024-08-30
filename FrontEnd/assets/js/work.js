@@ -71,20 +71,39 @@ async function addWorks() {
     });
 }
 
-async function removeWorks() {
-    document.addEventListener("DOMContentLoaded", async function () {
-        const trash = document.querySelectorAll('.trashLink');
-        const data = await apiWorks();
-    
-        data.forEach(works => {
-            trash.addEventListener('click', ()=>{
-                
-            })
-        });
+export async function removeWorks() {
+    const trashes = document.querySelectorAll('.trashLink');
+    const data = await apiWorks();
+    const token = localStorage.getItem('token');
 
-    });
+    for (let i = 0; i < data.length; i++) {
+        trashes[i].addEventListener('click', async ()=> {
+
+            try {
+                // Envoi de la requête DELETE à l'API pour supprimer l'élément
+                const response = await fetch(`http://localhost:5678/api/works/${data[i].id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                        
+                        // Ajoute d'autres en-têtes si nécessaire (par exemple, un token d'authentification)
+                    }
+                });
+
+                if (response.ok) {
+                    // Supprimer l'élément du DOM après sa suppression réussie
+                    trashes[i].closest('.item').remove(); // Supposons que chaque 'trashLink' est dans un conteneur avec la classe 'item'
+                } else {
+                    console.error(`Failed to delete item with id ${data[i].id}.`, response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+
+        });
+    }
 }
 
-removeWorks();
 readWorks();
 addWorks();
