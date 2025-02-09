@@ -15,9 +15,13 @@ export async function fetchData(url) {
 
 export function addItemsToContainer(container, data, showImage, showTitle, trashV) {
     if (container) {
+        
         data.forEach(item => {
+            console.log(item.title);
+            
             const itemElement = document.createElement('figure');
-            itemElement.setAttribute('data-category', item.categories)
+            itemElement.setAttribute('data-category', item.category.name);
+            
             
             // Ajouter l'image si showImage est true
             if (showImage) {
@@ -51,8 +55,8 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
 
 export function addButtonsFilterToContainer(container, categories, itemsContainer, data) {
     
-    if (container) {
-        
+    if (container) {   
+        addItemsToContainer(itemsContainer, data, true, true, false);
 
         const allButton = document.createElement('button');
         allButton.className = 'filtersButton activeButton';
@@ -77,12 +81,22 @@ export function addButtonsFilterToContainer(container, categories, itemsContaine
             button.addEventListener('click', () => {
                 myButtons.forEach(btn => btn.classList.remove('activeButton'));
                 button.classList.add('activeButton');
+                
+                let selectedCategory = button.getAttribute('data-category');
+                let filteredData = [];
+                
+                
+                // const filteredData = selectedCategory === 'Tous' 
+                //     ? data 
+                //     : data.filter(item => item.categories === selectedCategory);
 
-                const selectedCategory = button.getAttribute('data-category');
-                const filteredData = selectedCategory === 'Tous' 
-                    ? data 
-                    : data.filter(item => item.categories === selectedCategory);
+                    if (selectedCategory === 'Tous') {
+                        filteredData = data;
+                    } else {
+                        filteredData = data.filter(item => item.category.name === selectedCategory);
+                    }
 
+                    itemsContainer.innerHTML = '';
                     
                 addItemsToContainer(itemsContainer, filteredData, true, true, false);
             });
