@@ -1,19 +1,26 @@
 import { apiCategories, apiWorks } from './api.js';
-import { addItemsToContainer } from './script.js';
+import { addButtonsFilterToContainer, addItemsToContainer } from './script.js';
 
 async function readWorks() {
     const data = await apiWorks();
+    const categories = await apiCategories();
 
     if (data) {
         // Sélectionner les conteneurs pour les différentes sections
         const portfolioList = document.querySelector('.gallery'); // Liste principale du portfolio
         const modalList = document.querySelector('.modalEditPicture .data-list'); // Liste des modals
+        const myButtonsContainer = document.querySelector('.myButtonsContainer'); // Liste des boutons
 
         // Remplir la galerie du portfolio avec images et titres
-        addItemsToContainer(portfolioList, data, true, true, false);
+        // const categoryList = [{ name: 'Tous', className: 'activeButton' }, ...categories];
+        //addItemsToContainer(portfolioList, data, true, true, false);
+
 
         // Remplir les modals avec uniquement des images
+        addButtonsFilterToContainer(myButtonsContainer, categories, portfolioList, data);
         addItemsToContainer(modalList, data, true, false, true);
+
+
     }
 }
 

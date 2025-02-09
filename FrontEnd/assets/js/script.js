@@ -17,7 +17,8 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
     if (container) {
         data.forEach(item => {
             const itemElement = document.createElement('figure');
-
+            itemElement.setAttribute('data-category', item.categories)
+            
             // Ajouter l'image si showImage est true
             if (showImage) {
                 const img = document.createElement('img');
@@ -47,5 +48,47 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
         });
     }
 }
+
+export function addButtonsFilterToContainer(container, categories, itemsContainer, data) {
+    
+    if (container) {
+        
+
+        const allButton = document.createElement('button');
+        allButton.className = 'filtersButton activeButton';
+        allButton.textContent = 'Tous';
+        allButton.setAttribute('data-category', 'Tous');
+        container.appendChild(allButton);
+
+        categories.forEach(item => {
+            const button = document.createElement('button');
+            
+            button.className = 'filtersButton';
+            button.textContent = item.name;
+            button.setAttribute('data-category', item.name);
+            
+            // Ajouter l'élément au conteneur
+            container.appendChild(button);
+
+        });
+        const myButtons = document.querySelectorAll('.filtersButton');
+
+        myButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                myButtons.forEach(btn => btn.classList.remove('activeButton'));
+                button.classList.add('activeButton');
+
+                const selectedCategory = button.getAttribute('data-category');
+                const filteredData = selectedCategory === 'Tous' 
+                    ? data 
+                    : data.filter(item => item.categories === selectedCategory);
+
+                    
+                addItemsToContainer(itemsContainer, filteredData, true, true, false);
+            });
+        });
+    }
+}
+// addButtonsFilterToContainer(container, categories, itemsContainer, data);
 
 // Appeler la fonction displayData pour remplir les deux sections
