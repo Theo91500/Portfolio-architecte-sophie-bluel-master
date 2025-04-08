@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ajouter un gestionnaire d'événements pour le bouton de déconnexion
     logoutBtn.addEventListener('click', () => {
-        console.log('click');
         localStorage.removeItem('token');
         window.location.href = 'index.html'; // Rediriger vers la page de connexion
     });

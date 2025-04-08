@@ -83,7 +83,9 @@ export async function removeWorks() {
     const data = await apiWorks();
     const token = localStorage.getItem('token');
 
+    
     for (let i = 0; i < data.length; i++) {
+        
         trashes[i].addEventListener('click', async ()=> {
 
             try {

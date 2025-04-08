@@ -17,7 +17,6 @@ export function addItemsToContainer(container, data, showImage, showTitle, trash
     if (container) {
         
         data.forEach(item => {
-            console.log(item.title);
             
             const itemElement = document.createElement('figure');
             itemElement.setAttribute('data-category', item.category.name);
